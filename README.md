@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">EpiMaskXA-Net: Leveraging Epipolar Distance Based Masks in Cross-Attention for Satellite Image Matching</h1>
+  <h1 align="center">EpiMask: Leveraging Epipolar Distance Based Masks in Cross-Attention for Satellite Image Matching</h1>
   <p align="center">
   <!-- link to git/linkedin etc -->
     <a href="https://www.linkedin.com/in/rahul-deshmukh-purdue">Rahul Deshmukh</a> |
