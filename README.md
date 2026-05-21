@@ -13,4 +13,6 @@
 </p>
 
 ---
-Something exciting coming soon
+## Announcements  
+- Our work has been accepted for publication in the *IEEE / CVF Conference on Computer Vision and Pattern Recognition Findings (CVPR-F)*. This page will be updated once the DOI becomes available.
+- Codebase and model weights to come out soon
