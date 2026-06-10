@@ -12,6 +12,18 @@
   </p>
 </p>
 
+<p align="center">
+  <table>
+    <tr>
+      <!-- Left column -->
+      <td>
+        <img src="assets/epimask_poster.png" alt="pipeline" width="100%"/>
+      </td>
+      <!-- Right column with two stacked images -->
+    </tr>
+  </table>
+</p>
+
 ---
 ## Announcements  
 - Our work has been accepted for publication in the *IEEE / CVF Conference on Computer Vision and Pattern Recognition Findings (CVPR-F)*. This page will be updated once the DOI becomes available.
