@@ -1,0 +1,21 @@
+# vendored external repos (re-cloned by scripts/setup_external/*.sh)
+external/
+
+# dataset / shard storage (populated locally, see README "Dataset Download and Prep")
+/data/
+
+# training/eval outputs
+training_experiments/
+
+# pretrained model weights (large binaries, distributed separately - see README "Model Weights")
+model_weights/
+
+# python
+__pycache__/
+*.pyc
+
+# editor
+.vscode/
+
+# claude
+.claude/

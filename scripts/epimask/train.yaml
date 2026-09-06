@@ -1,0 +1,40 @@
+# yaml config file for training EpiMask
+#----------------------------dataset----------------------------------#
+# Paths below are relative to the repo root (scripts/epimask/train.sh cd's there
+# before invoking train_epimask.py). See README "Dataset Download and Prep" for how
+# to populate data/satdepth/index/ (pairlists) and data/satdepth/webdataset/ (shards) --
+# either build them with src/datasets/make_sharded_webdataset.py or symlink them to
+# wherever your dataset/shards actually live.
+
+# On-the-fly (non-sharded) training pairlists, only used when dataset_type=default:
+# train_pairlist: data/satdepth/index/jax_balanced_train_pairs.csv
+# val_pairlist: data/satdepth/index/jax_balanced_val_pairs.csv
+
+# Jacksonville sharded dataset train 128k (256 shards, 500 each) val - 2000 (8 shards, 250 each)
+# shard_dir: data/satdepth/webdataset/satdepth-hw448-128k-rot_aug
+shard_dir: data/satdepth/webdataset/satdepth-hw336-128k-rot_aug
+
+shard_size_train: 500
+shard_size_val: 250
+#------------------------------------------------------------------------#
+# img_patch_size:  448 # img_patch_size and train_img_size should always be the same
+# train_img_size:  448
+
+img_patch_size:  336 #448 # img_patch_size and train_img_size should always be the same
+train_img_size:  336 #448
+
+kp_mode: mixed # [sift, random, mixed]
+pct_sift: 0.5
+num_pts: 800 # initial number of pts to be drawn
+num_pts_retained: 128 # final matching pts
+
+funda_method: cameras
+
+# sharded dataset params
+shards_per_epoch_train: 48 #24
+shuffle_buffer_size: 128
+
+
+# to resume/init from a checkpoint (see README "Model Weights" for pretrained checkpoints):
+# resume_from_checkpoint: <path/to/checkpoint.ckpt> # only use when you want to resume from a intermediate checkpoint (for eg when compute drops). This will load the optimizer states and checkpoint weights
+# ckpt_path: <path/to/checkpoint.ckpt> # to be used only for pre-trained weights from stage-1

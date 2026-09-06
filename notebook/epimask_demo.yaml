@@ -1,0 +1,28 @@
+# Demo config for notebook/epimask_demo.ipynb.
+# Points at one released checkpoint (model_weights/<exp_name>/) and one
+# sharded-webdataset sample used to demonstrate inference + visualization.
+
+# name of the folder under model_weights/ - must contain train_config.yaml + ckpt_filename
+exp_name: epimask-HR-gamma-pt4-lora32-stage2
+
+# trained checkpoint
+ckpt_filename: epimask-HR-gamma-pt4-lora32-stage2.ckpt
+
+# match_coarse threshold override applied on top of the checkpoint's own train_config.yaml
+match_thr: 0.3
+nMatchesKeep: 2000
+
+# data sample: data/satdepth/webdataset/<shard_subdir>/*.tar
+# Default points at the small demo shard (4 sample pairs from AOI 144 og jacksonville) -- download it and place
+# at data/satdepth/webdataset/satdepth-demo/ (see README "Demo" for the download link).
+# To instead run against the full dataset, set shard_subdir to "<dataset-name>/<aoi>"
+# (see README "Setup SatDepth Dataset") and adjust shard_size_val/sample_idx.
+shard_subdir: satdepth-demo
+shard_size_val: 4
+sample_idx: 0  # 0-3; index 0 is the pair the attn_query_point/plots in displayed in our paper
+
+device: 0  # set to null to force CPU
+
+# attention-map visualization
+num_att_pts: 40
+attn_query_point: [65, 36]  # coarse-scale query pixel (x, y)

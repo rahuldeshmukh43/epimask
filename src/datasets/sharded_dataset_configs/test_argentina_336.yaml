@@ -1,0 +1,21 @@
+# Config for src/datasets/make_sharded_webdataset.py --phase test
+# argentina test pairs -> whole-image test shards, hw336.
+# Paths are relative to the repo root (scripts/epimask/make_sharded_webdataset_for_long_testing.sh cd's there).
+
+phase: test
+test_pairlist: data/satdepth/index/argentina_test_pairs.csv
+
+img_patch_size: 336
+train_img_size: 336
+
+kp_mode: mixed # [sift, random, mixed]
+pct_sift: 0.5
+num_pts: 800 # initial number of pts to be drawn
+num_pts_retained: 128 # final matching pts
+funda_method: cameras
+
+# matches the shard_dir expected by scripts/epimask/test_epimask_sharded.yaml
+shard_dir: data/satdepth/webdataset/satdepth-hw336-128k-rot_aug/test_whole_image/argentina
+
+# preserves the old make_sharded_webdataset_for_long_testing.py default (unified script default is 10e9)
+maxsize: 5000000000

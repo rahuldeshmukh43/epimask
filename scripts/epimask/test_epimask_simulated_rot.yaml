@@ -1,0 +1,43 @@
+#----------------------------dataset----------------------------------#
+# test_pairlist and shard_dir are passed as CLI args by test_epimask_simulated_rot.sh
+# (they vary per AOI/run), see that script for usage.
+#------------------------------------------------------------------------#
+
+# img_patch_size and train_img_size must both equal the image size the checkpoint below
+# was trained at (see README "Model Weights" table, or SATDEPTH_IMG_RESIZE in your own
+# train_config.yaml). A mismatch does not error -- it just gives wrong results.
+# img_patch_size: 448 # LR checkpoints
+# train_img_size: 448
+
+img_patch_size: 336 # HR checkpoints
+train_img_size: 336
+
+kp_mode: mixed # [sift, random, mixed]
+pct_sift: 0.5
+num_pts: 800 # initial number of pts to be drawn
+num_pts_retained: 128 # final matching pts
+
+funda_method: cameras #matches
+match_thr: 0.3
+nMatchesKeep: 2000
+
+#---------------- checkpoint ----------------------------------#
+# see README "Model Weights" for pretrained checkpoints, or use a checkpoint produced
+# by scripts/epimask/train.sh (under training_experiments/<exp_name>/logs/tb_logs/.../checkpoints/)
+# exp_name is not read by test_epimask_simulated_rot.py -- it's just a label for you to
+# keep in sync with ckpt_path/model_cfg_path below.
+exp_name: epimask-HR-gamma-pt4-lora32-stage2
+ckpt_path: model_weights/epimask-HR-gamma-pt4-lora32-stage2/epimask-HR-gamma-pt4-lora32-stage2.ckpt
+
+# model_cfg_path must point at the train_config.yaml matching ckpt_path above -- either
+# training_experiments/<exp_name>/train_config.yaml (written by scripts/epimask/train.sh),
+# or the train_config.yaml bundled with a released checkpoint under model_weights/<name>/.
+# If a sibling train_args.yaml is present (written alongside train_config.yaml by
+# train.sh) it's used to sanity-check img_patch_size; released model_weights/
+# checkpoints don't ship one, and that check is simply skipped in that case.
+model_cfg_path: model_weights/epimask-HR-gamma-pt4-lora32-stage2/train_config.yaml
+
+# outdir is just where this test run's outputs (matches, plots, logs, summary.pkl) get
+# written, under outdir/<testing-set-name>/ -- it does not need to be the training run /
+# model_weights directory.
+outdir: training_experiments/epimask-HR-gamma-pt4-lora32-stage2
